@@ -1,0 +1,1 @@
+INSERT INTO `mangos_string` VALUES ('11050', 'Shark-WOW send awarded a token for slaying another player.', null, null, null, null, null, null, null, null); 
