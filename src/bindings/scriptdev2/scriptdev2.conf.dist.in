@@ -1,0 +1,98 @@
+# ScriptDev2 Configuration file
+# This file must be placed within the directory which holds mangosd.conf and realmd.conf
+ConfVersion=2009040501
+
+# Database connection settings for the world server.
+# Default: hostname;port;username;password;database
+#          .;somenumber;username;password;database - use named pipes at Windows
+#                Named pipes: mySQL required adding "enable-named-pipe" to [mysqld] section my.ini
+#          .;/path/to/unix_socket;username;password;database - use Unix sockets at Unix/Linux
+#                Unix sockets: experimental, not tested
+ScriptDev2DatabaseInfo     = "127.0.0.1;3306;mangos;mangos;scriptdev2"
+
+################################################################################################
+# TeleportMaster Custom Config Options
+#
+#    TeleportMaster.OnlyGMs
+#        Players are not allowed to use the TeleportMaster if this is enabled
+#        Default: 0 - Disable
+#                 1 - Enable
+#
+################################################################################################
+
+TeleportMaster.OnlyGMs = 0
+
+################################################################################################
+# ZenMaster Custom Config options
+#
+#    ZenMaster.OnlyGMs
+#        Only GMs can use the NPC if this is enabled
+#        Default: 0 - Disable
+#                 1 - Enable
+#
+#    ZenMaster.Cost
+#        Cost in copper that player need to pay to summon their class trainer
+#        Default: 100000 (10 gold)
+#
+#    ZenMaster.EnableSummonStone
+#        Toggles the ability to use the 'Zen  Master Summon Stone'
+#        Default: 1 - Enable
+#                 0 - Disable
+################################################################################################
+
+ZenMaster.OnlyGMs           = 0
+ZenMaster.Cost              = 100000
+ZenMaster.EnableSummonStone = 1
+
+################################################################################################
+# Npc_Buff custom config options
+#
+#    BuffNPC.OnlyGMs
+#        players are not allowed to use the NPC if this is enabled
+#        Default: 0 - disable
+#                 1 - enable
+#
+#    BuffNPC.EnableSmallBuff
+#        An option will be added to the gossip menu to Buff Players whit SmallBuff
+#        Default: 1 - enable
+#                 0 - disable
+#
+#    BuffNPC.EnableGreatBuff
+#        An option will be added to the gossip menu to Buff Players whit GreatBuff
+#        Default: 1 - enable
+#                 0 - disable
+#
+#    BuffNPC.EnableGMBuff
+#        An option will be added to the gossip menu to Buff GM whit GMBuff
+#        Default: 1 - enable
+#                 0 - disable
+#
+#    BuffNPC.EnablePlayerTools
+#        An option will be added to the gossip menu for Player to give heal, food, mana gem
+#        Default: 1 - enable
+#                 0 - disable
+#
+#    BuffNPC.EnableGivemeGold
+#        An option will be added to the gossip menu for Player to get gold
+#        Default: 0 - disable
+#                 1 - enable
+#
+#    BuffNPC.EnableRemoveResSickness
+#        An option will be added to the gossip menu for removing resurrect sickness
+#        Default: 1 - enable
+#                 0 - disable
+#
+#    BuffGoldCost
+#        An option will be added to the gossip menu for Buff Cost. Make sure to change the GoldCost whit the GoldCost you wanna pay.
+#        Default: 2 - GoldCost = 20000 Copper
+#
+################################################################################################
+
+BuffNPC.OnlyGMs = 0
+BuffNPC.EnableSmallBuff = 1
+BuffNPC.EnableGreatBuff = 1
+BuffNPC.EnableGMBuff = 1
+BuffNPC.EnablePlayerTools = 1
+BuffNPC.EnableGivemeGold = 0
+BuffNPC.EnableRemoveResSickness = 1
+BuffGoldCost = 20000 (2 Gold)
