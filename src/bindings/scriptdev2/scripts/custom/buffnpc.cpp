@@ -1,4 +1,7 @@
-/* Made by Gu who Author fucking damn */
+/* 
+ * Copyright (C) 2010 Hellscream Network.
+ */
+
 #include "precompiled.h"
 #include "../../../../shared/Config/Config.h"
 #include "../../config.h"

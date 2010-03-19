@@ -12,6 +12,7 @@ extern void AddSC_TeleportMaster();
 extern void AddSC_ZenMaster();
 extern void AddSC_buffnpc();
 extern void AddSC_npc_morph();
+extern void AddSC_custom_npc_guildmaster();
 
 //examples
 extern void AddSC_example_creature();
@@ -420,6 +421,7 @@ void AddScripts()
 	AddSC_ZenMaster();
 	AddSC_buffnpc();
 	AddSC_npc_morph();
+	AddSC_custom_npc_guildmaster();
 
     //examples
     AddSC_example_creature();

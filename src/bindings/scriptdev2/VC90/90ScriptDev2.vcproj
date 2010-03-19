@@ -408,6 +408,10 @@
 					>
 				</File>
 				<File
+					RelativePath="..\scripts\custom\guildmaster.cpp"
+					>
+				</File>
+				<File
 					RelativePath="..\scripts\custom\morphnpc.cpp"
 					>
 				</File>
