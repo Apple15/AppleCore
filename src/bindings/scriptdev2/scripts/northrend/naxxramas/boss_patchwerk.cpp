@@ -47,12 +47,12 @@ struct MANGOS_DLL_DECL boss_patchwerkAI : public ScriptedAI
 {
     boss_patchwerkAI(Creature* pCreature) : ScriptedAI(pCreature)
     {
-        m_pInstance = (instance_naxxramas*)pCreature->GetInstanceData();
+        m_pInstance = (ScriptedInstance*)pCreature->GetInstanceData();
         m_bIsRegularMode = pCreature->GetMap()->IsRegularDifficulty();
         Reset();
     }
 
-    instance_naxxramas* m_pInstance;
+    ScriptedInstance* m_pInstance;
     bool m_bIsRegularMode;
 
     uint32 m_uiHatefulStrikeTimer;
@@ -111,7 +111,7 @@ struct MANGOS_DLL_DECL boss_patchwerkAI : public ScriptedAI
         for (ThreatList::const_iterator iter = tList.begin();iter != tList.end(); ++iter)
         {
             if (!uiTargets)
-                break;
+                return;
 
             if (Unit* pTempTarget = Unit::GetUnit((*m_creature), (*iter)->getUnitGuid()))
             {
@@ -146,7 +146,7 @@ struct MANGOS_DLL_DECL boss_patchwerkAI : public ScriptedAI
         // Soft Enrage at 5%
         if (!m_bEnraged)
         {
-            if (m_creature->GetHealthPercent() < 5.0f)
+            if (m_creature->GetHealth()*20 < m_creature->GetMaxHealth())
             {
                 DoCastSpellIfCan(m_creature, SPELL_ENRAGE);
                 DoScriptText(EMOTE_ENRAGE, m_creature);

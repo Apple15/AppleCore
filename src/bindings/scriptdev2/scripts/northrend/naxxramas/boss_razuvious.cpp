@@ -48,12 +48,12 @@ struct MANGOS_DLL_DECL boss_razuviousAI : public ScriptedAI
 {
     boss_razuviousAI(Creature* pCreature) : ScriptedAI(pCreature)
     {
-        m_pInstance = (instance_naxxramas*)pCreature->GetInstanceData();
+        m_pInstance = (ScriptedInstance*)pCreature->GetInstanceData();
         m_bIsRegularMode = pCreature->GetMap()->IsRegularDifficulty();
         Reset();
     }
 
-    instance_naxxramas* m_pInstance;
+    ScriptedInstance* m_pInstance;
     bool m_bIsRegularMode;
 
     uint32 m_uiUnbalancingStrikeTimer;
@@ -67,6 +67,9 @@ struct MANGOS_DLL_DECL boss_razuviousAI : public ScriptedAI
         m_uiDisruptingShoutTimer   = 15000;                 // 15 seconds
         m_uiJaggedKnifeTimer       = urand(10000, 15000);
         m_uiCommandSoundTimer      = 40000;                 // 40 seconds
+
+		if (m_pInstance)
+            m_pInstance->SetData(TYPE_RAZUVIOUS, NOT_STARTED);
     }
 
     void KilledUnit(Unit* Victim)
@@ -105,7 +108,7 @@ struct MANGOS_DLL_DECL boss_razuviousAI : public ScriptedAI
     void JustReachedHome()
     {
         if (m_pInstance)
-            m_pInstance->SetData(TYPE_RAZUVIOUS, FAIL);
+            m_pInstance->SetData(TYPE_RAZUVIOUS, NOT_STARTED);
     }
 
     void UpdateAI(const uint32 uiDiff)

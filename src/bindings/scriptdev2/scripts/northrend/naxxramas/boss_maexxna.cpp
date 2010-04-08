@@ -93,12 +93,12 @@ struct MANGOS_DLL_DECL boss_maexxnaAI : public ScriptedAI
 {
     boss_maexxnaAI(Creature* pCreature) : ScriptedAI(pCreature)
     {
-        m_pInstance = (instance_naxxramas*)pCreature->GetInstanceData();
+        m_pInstance = (ScriptedInstance*)pCreature->GetInstanceData();
         m_bIsRegularMode = pCreature->GetMap()->IsRegularDifficulty();
         Reset();
     }
 
-    instance_naxxramas* m_pInstance;
+    ScriptedInstance* m_pInstance;
     bool m_bIsRegularMode;
 
     uint32 m_uiWebWrapTimer;
@@ -240,7 +240,7 @@ struct MANGOS_DLL_DECL boss_maexxnaAI : public ScriptedAI
             m_uiSummonSpiderlingTimer -= uiDiff;
 
         //Enrage if not already enraged and below 30%
-        if (!m_bEnraged && m_creature->GetHealthPercent() < 30.0f)
+        if (!m_bEnraged && (m_creature->GetHealth()*100 / m_creature->GetMaxHealth()) < 30)
         {
             DoCastSpellIfCan(m_creature, SPELL_FRENZY);
             m_bEnraged = true;

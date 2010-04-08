@@ -207,6 +207,7 @@ struct MANGOS_DLL_DECL boss_teron_gorefiendAI : public ScriptedAI
     uint64 GhostGUID;                                       // Player that gets killed by Shadow of Death and gets turned into a ghost
 
     bool Intro;
+	bool Intro2;
 
     void Reset()
     {
@@ -217,13 +218,14 @@ struct MANGOS_DLL_DECL boss_teron_gorefiendAI : public ScriptedAI
         SummonShadowsTimer = 60000;
         RandomYellTimer = 50000;
 
-        m_creature->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE);
+        //m_creature->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE);
         // Start off unattackable so that the intro is done properly
-        m_creature->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE);
+        //m_creature->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE);
 
         AggroTimer = 20000;
         AggroTargetGUID = 0;
         Intro = false;
+		Intro2 = false;
     }
 
     void JustReachedHome()
@@ -232,12 +234,12 @@ struct MANGOS_DLL_DECL boss_teron_gorefiendAI : public ScriptedAI
             m_pInstance->SetData(TYPE_GOREFIEND, NOT_STARTED);
     }
 
-    void MoveInLineOfSight(Unit* pWho)
+    /*void MoveInLineOfSight(Unit* pWho)
     {
         if (!Intro && pWho->GetTypeId() == TYPEID_PLAYER && pWho->isTargetableForAttack() &&
             m_creature->IsHostileTo(pWho) && pWho->isInAccessablePlaceFor(m_creature))
         {
-            if (m_creature->IsWithinDistInMap(pWho, VISIBLE_RANGE) && m_creature->IsWithinLOSInMap(pWho))
+            if (m_creature->IsWithinDistInMap(pWho, 50) && m_creature->IsWithinLOSInMap(pWho))
             {
                 if (m_pInstance)
                     m_pInstance->SetData(TYPE_GOREFIEND, IN_PROGRESS);
@@ -248,12 +250,20 @@ struct MANGOS_DLL_DECL boss_teron_gorefiendAI : public ScriptedAI
                 DoScriptText(SAY_INTRO, m_creature);
 
                 m_creature->SetUInt32Value(UNIT_NPC_EMOTESTATE, EMOTE_STATE_TALK);
-                AggroTargetGUID = pWho->GetGUID();
+                //AggroTargetGUID = pWho->GetGUID();
                 Intro = true;
+				Intro2 = true;
             }
         }
 
         ScriptedAI::MoveInLineOfSight(pWho);
+    }*/
+
+	void Aggro(Unit* pWho)
+    {
+        DoScriptText(SAY_AGGRO, m_creature);
+        if (m_pInstance)
+               m_pInstance->SetData(TYPE_GOREFIEND, IN_PROGRESS);
     }
 
     void KilledUnit(Unit *victim)
@@ -351,7 +361,7 @@ struct MANGOS_DLL_DECL boss_teron_gorefiendAI : public ScriptedAI
 
     void UpdateAI(const uint32 diff)
     {
-        if (Intro)
+        /*if (Intro2)
         {
             if (AggroTimer < diff)
             {
@@ -361,7 +371,8 @@ struct MANGOS_DLL_DECL boss_teron_gorefiendAI : public ScriptedAI
                 DoScriptText(SAY_AGGRO, m_creature);
 
                 m_creature->SetUInt32Value(UNIT_NPC_EMOTESTATE, EMOTE_STATE_NONE);
-                Intro = false;
+                Intro2 = false;
+				m_creature->SetInCombatWithZone();
                 if (AggroTargetGUID)
                 {
                     Unit* pUnit = Unit::GetUnit((*m_creature), AggroTargetGUID);
@@ -371,7 +382,7 @@ struct MANGOS_DLL_DECL boss_teron_gorefiendAI : public ScriptedAI
                     m_creature->SetInCombatWithZone();
                 }else EnterEvadeMode();
             }else AggroTimer -= diff;
-        }
+        }*/
 
         if (!m_creature->SelectHostileTarget() || !m_creature->getVictim() || Intro)
             return;
