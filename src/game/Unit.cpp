@@ -716,7 +716,7 @@ uint32 Unit::DealDamage(Unit *pVictim, uint32 damage, CleanDamage const* cleanDa
 			if (pVictim->GetTypeId() == TYPEID_PLAYER)
 			{
 				sWorld.SendPvPAnnounce(player, ((Player*)pVictim));
-				sLog.outError("%u Has Killed %u",player,((Player*)pVictim));
+				sLog.outError("%u Has Killed %u",player->GetName(),((Player*)pVictim)->GetName());
 			}
 			// PvP Token
 			int8 leveldiff = player->getLevel() - pVictim->getLevel();
