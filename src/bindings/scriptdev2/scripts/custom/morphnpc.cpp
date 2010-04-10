@@ -16,6 +16,7 @@ bool GossipHello_npc_morph(Player* pPlayer, Creature* pCreature)
 	pPlayer->ADD_GOSSIP_ITEM(0,"Kel'thuzad Morph",GOSSIP_SENDER_MAIN,1011);
 	pPlayer->ADD_GOSSIP_ITEM(0,"Sneed's Shredder Morph",GOSSIP_SENDER_MAIN,1012);
 	pPlayer->ADD_GOSSIP_ITEM(0,"Unstoppable Abomination Morph",GOSSIP_SENDER_MAIN,1013);
+	pPlayer->ADD_GOSSIP_ITEM(0,"De Morph",GOSSIP_SENDER_MAIN,1014);
 
 	pPlayer->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE,pCreature->GetGUID());
 	return true;
@@ -102,6 +103,9 @@ void SendDefaultMenu_npc_morph(Player* pPlayer, Creature* pCreature, uint32 uiAc
 		pPlayer->SetDisplayId(12818);
 		pPlayer->SetFloatValue(OBJECT_FIELD_SCALE_X,0.70f);
 		pPlayer->CLOSE_GOSSIP_MENU();
+		break;
+	case 1014: //De Morph
+		pPlayer->DeMorph();
 		break;
 
 	}
